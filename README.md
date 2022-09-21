@@ -11,7 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Project setup
 
-Open project folder and run `npm install`.
+Run `npm install`.
 
 ## Development server
 
