@@ -7,11 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LabelModule } from '@progress/kendo-angular-label';
 import { InputsModule } from '@progress/kendo-angular-inputs';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { DialogModule } from '@progress/kendo-angular-dialog';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { GridEditFormComponent } from './edit-form.component';
 
 @NgModule({
   declarations: [
+    GridEditFormComponent,
     AppComponent
   ],
   imports: [
@@ -21,7 +26,13 @@ import { HttpClientModule } from '@angular/common/http';
     LabelModule,
     InputsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DropDownsModule,
+    DialogModule,
+    InputsModule,
+    LabelModule,
+    ButtonsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
