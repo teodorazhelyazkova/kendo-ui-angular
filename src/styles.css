@@ -2,7 +2,7 @@
 html,
 body {
   margin: 0;
-  padding: 0;
+  padding: 0.5rem;
   height: 100%;
 }
 body {
@@ -10,7 +10,6 @@ body {
   font-size: 14px;
   margin: 0;
 }
-
 my-app {
   display: block;
   box-sizing: border-box;
@@ -80,4 +79,8 @@ my-app > .k-icon.k-i-loading {
 
 .k-grid-container tr:hover {
   background-color: rgb(228, 194, 166) !important;
+}
+
+.toggle-wrapper {
+  margin-bottom: 1rem;
 }

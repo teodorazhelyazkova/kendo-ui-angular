@@ -93,8 +93,6 @@ export class GridEditFormComponent {
 
   @Input() public set model(post: Post) {
     this.editForm.reset(post);
-
-    // toggle the Dialog visibility
     this.active = post !== undefined;
   }
 

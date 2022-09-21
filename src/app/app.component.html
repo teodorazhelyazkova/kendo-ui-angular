@@ -7,9 +7,11 @@
     <title>Kendo Angular App</title>
   </head>
   <body>
-    <kendo-label text="Show ID">
-      <kendo-switch [(ngModel)]="checked"></kendo-switch>
-    </kendo-label>
+    <div class="toggle-wrapper">
+      <kendo-label text="Show ID">
+        <kendo-switch [(ngModel)]="checked"></kendo-switch>
+      </kendo-label>
+    </div>
     <kendo-grid
       [resizable]="true"
       [kendoGridBinding]="gridData"
@@ -18,9 +20,13 @@
       [pageSize]="10"
       [pageable]="{ buttonCount: 3, pageSizes: [5, 10, 20] }"
       [style.height.%]="80"
+      (add)="addHandler()"
       (edit)="editHandler($event)"
       [rowClass]="rowClassFn"
     >
+      <ng-template kendoGridToolbarTemplate>
+        <button kendoGridAddCommand>Add new</button>
+      </ng-template>
       <kendo-grid-column
         field="id"
         title="ID"

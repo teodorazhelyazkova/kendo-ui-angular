@@ -1,6 +1,6 @@
 # KendoAngularApp
 
-This application represents data from JSONPlaceholder API. The grid includes data-processing operations (like paging and client-side sorting), column-toggle and pop-up dialog for editing single-row data.
+This application represents data from JSONPlaceholder API. The grid includes data-processing operations (like paging and client-side sorting), column-toggle and pop-up dialog for creating and editing single-row data.
 
 The following Kendo UI components are used:
 - [Angular Data Grid](https://www.telerik.com/kendo-angular-ui/components/grid/)

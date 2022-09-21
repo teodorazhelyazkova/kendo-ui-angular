@@ -9,8 +9,8 @@ import { Post } from 'src/Post.model';
 export class AppComponent implements OnInit {
   public gridData: Post[] = [];
   public checked: boolean = true;
-  public isDialogVisible: boolean = false;
-  public editDataItem: any = null;
+  public editDataItem: any = undefined;
+  public isNew: boolean = false;
 
   rowClassFn({ dataItem, index }: { dataItem: Post; index: number }) {
     const isEven = index % 2 === 0;
@@ -37,29 +37,49 @@ export class AppComponent implements OnInit {
   updatePost(post: Post) {
     this.http
       .put<any>(`https://jsonplaceholder.typicode.com/posts/${post.id}`, post)
-      .subscribe((data) => {
-        const index: number = this.gridData.findIndex(
-          (entry) => entry.id === post.id
+      .subscribe((data: Post) => {
+        const currentPostIndex: number = this.gridData.findIndex(
+          (post) => post.id === data.id
         );
-        this.gridData[index] = data;
-        console.log(this.gridData);
+        this.gridData[currentPostIndex] = data;
+        console.log('grid data after post update:', this.gridData);
       });
   }
 
-  editHandler(args: any): void {
-    console.log('editHandler was triggered', args.dataItem);
-    this.editDataItem = args.dataItem;
+  createPost(post: Post) {
+    this.http
+      .post<any>(`https://jsonplaceholder.typicode.com/posts`, post)
+      .subscribe((data: Post) => {
+        this.gridData.push(data);
+        console.log('grid data after post create:', this.gridData);
+      });
+  }
 
-    // open dialog
-    this.isDialogVisible = true;
+  addHandler(): void {
+    this.editDataItem = {
+      userId: null,
+      id: null,
+      title: '',
+      body: '',
+    };
+    this.isNew = true;
+  }
+
+  editHandler(args: any): void {
+    this.editDataItem = args.dataItem;
   }
 
   saveHandler(post: Post): void {
-    console.log('saveHandler...', post);
-    this.updatePost(post);
+    this.isNew ? this.createPost(post) : this.updatePost(post);
   }
 
   cancelHandler(): void {
-    console.log('cancelHandler...');
+    this.editDataItem = {
+      userId: null,
+      id: null,
+      title: '',
+      body: '',
+    };
+    this.isNew = true;
   }
 }
