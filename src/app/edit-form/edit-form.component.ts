@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { Post } from '../Post.model';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Post } from '../../Post.model';
 
 @Component({
   selector: 'kendo-grid-edit-form',

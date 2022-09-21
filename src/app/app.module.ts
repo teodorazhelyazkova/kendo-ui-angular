@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { DialogModule } from '@progress/kendo-angular-dialog';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
-import { GridEditFormComponent } from './edit-form.component';
+import { GridEditFormComponent } from './edit-form/edit-form.component';
 
 @NgModule({
   declarations: [

@@ -5,19 +5,25 @@ import { Post } from 'src/Post.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   public gridData: Post[] = [];
   public checked: boolean = true;
   public isDialogVisible: boolean = false;
   public editDataItem: any = null;
-  public isNew: boolean = false;
+
+  rowClassFn({ dataItem, index }: { dataItem: Post; index: number }) {
+    const isEven = index % 2 === 0;
+    return {
+      even: isEven,
+      odd: !isEven,
+    };
+  }
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.getLimitedPosts(5);
+    this.getLimitedPosts(100);
   }
 
   getLimitedPosts(limit: number) {
@@ -28,9 +34,7 @@ export class AppComponent implements OnInit {
       });
   }
 
-  updatePost(event: any) {
-    const post: Post = event.dataItem;
-
+  updatePost(post: Post) {
     this.http
       .put<any>(`https://jsonplaceholder.typicode.com/posts/${post.id}`, post)
       .subscribe((data) => {
@@ -38,6 +42,7 @@ export class AppComponent implements OnInit {
           (entry) => entry.id === post.id
         );
         this.gridData[index] = data;
+        console.log(this.gridData);
       });
   }
 
@@ -49,11 +54,11 @@ export class AppComponent implements OnInit {
     this.isDialogVisible = true;
   }
 
-  saveHandler(args: any): void {
-    console.log('saveHandler...', args);
-    // updatePost(args);
+  saveHandler(post: Post): void {
+    console.log('saveHandler...', post);
+    this.updatePost(post);
   }
-  
+
   cancelHandler(): void {
     console.log('cancelHandler...');
   }

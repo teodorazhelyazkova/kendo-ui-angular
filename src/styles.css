@@ -66,6 +66,18 @@ my-app > .k-icon.k-i-loading {
   margin-bottom: -1px;
 }
 
-kendo-label {
-  margin-right: 4px;
+.even {
+  color: rgb(199, 80, 25);
+}
+
+.odd {
+  color: rgb(21, 173, 54);
+}
+
+.k-grid tr:hover {
+  background-color: rgb(166, 228, 171) !important;
+}
+
+.k-grid-container tr:hover {
+  background-color: rgb(228, 194, 166) !important;
 }

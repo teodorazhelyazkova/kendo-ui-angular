@@ -14,12 +14,12 @@
       [resizable]="true"
       [kendoGridBinding]="gridData"
       [filterable]="true"
-      [groupable]="true"
       [sortable]="{ allowUnsort: true, mode: 'multiple' }"
       [pageSize]="10"
       [pageable]="{ buttonCount: 3, pageSizes: [5, 10, 20] }"
       [style.height.%]="80"
       (edit)="editHandler($event)"
+      [rowClass]="rowClassFn"
     >
       <kendo-grid-column
         field="id"
@@ -33,20 +33,14 @@
         [width]="30"
       ></kendo-grid-column>
 
-      <kendo-grid-column
-        [ngClass]="'columnClassssssss'"
-        field="title"
-        title="Title"
-        [width]="140"
+      <kendo-grid-column field="title" title="Title" [width]="140"
         ><ng-template
           kendoGridCellTemplate
           let-dataItem
           let-rowIndex="rowIndex"
-          class="{'myClass': true}"
-          >{{ rowIndex + 1 }} /
-          <strong class="test">{{ dataItem.title }}</strong>
-          ({{ (rowIndex + 1) % 2 !== 0 ? "odd" : "even" }})</ng-template
-        ></kendo-grid-column
+        >
+          <strong>{{ dataItem.title }}</strong>
+        </ng-template></kendo-grid-column
       >
       <kendo-grid-column
         field="body"
@@ -61,7 +55,6 @@
     </kendo-grid>
     <kendo-grid-edit-form
       [model]="editDataItem"
-      [isNew]="isNew"
       (save)="saveHandler($event)"
       (cancel)="cancelHandler()"
     >
